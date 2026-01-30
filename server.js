@@ -12,7 +12,8 @@ app.use(express.static("public"));
 /* ========================
    DATABASE CONNECTION
 ======================== */
-const uri = "mongodb+srv://akashbangaru227_db_user:5456@cluster0.ltybqt8.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URI;
+
 
 const client = new MongoClient(uri, {
   serverApi: {
