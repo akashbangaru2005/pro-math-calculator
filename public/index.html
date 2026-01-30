@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pro Math Calculator</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="manifest" href="manifest.json">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- Splash Loader -->
+<div id="splash">
+  <div class="splash-logo">∑</div>
+  <div class="loader"></div>
+</div>
+
+<button id="themeToggle" class="theme-btn">🌙</button>
+
+<div class="app">
+
+  <!-- LEFT: CALCULATOR -->
+  <aside class="calculator-panel">
+
+    <div class="display-container">
+      <div id="history"></div>
+
+      <div class="history-header">
+        <span>History</span>
+        <button id="clearHistoryBtn">Clear</button>
+      </div>
+
+      <div id="historyPanel"></div>
+      <input type="text" id="display" disabled />
+    </div>
+
+    <!-- 🔢 NORMAL CALCULATOR RESTORED -->
+    <div class="buttons">
+      <button class="op" onclick="clearAll()">AC</button>
+      <button class="op" onclick="deleteLast()">DEL</button>
+      <button class="op" onclick="append('%')">%</button>
+      <button class="op" onclick="append('/')">÷</button>
+
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="op" onclick="append('*')">×</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="op" onclick="append('-')">−</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="op" onclick="append('+')">+</button>
+
+      <button class="zero" onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+    </div>
+
+    <!-- 🧠 SCIENTIFIC + MEMORY -->
+    <div class="extra-controls">
+      <button onclick="sci('sin')">sin</button>
+      <button onclick="sci('cos')">cos</button>
+      <button onclick="sci('tan')">tan</button>
+      <button onclick="sci('log')">log</button>
+      <button onclick="sci('sqrt')">√</button>
+      <button onclick="append('!')">x!</button>
+      <button onclick="sci('asin')">sin⁻¹</button>
+      <button onclick="sci('acos')">cos⁻¹</button>
+      <button onclick="sci('atan')">tan⁻¹</button>
+      <button onclick="append('π')">π</button>
+      <button onclick="append('^')">xʸ</button>
+      <button onclick="append('(')">(</button>
+      <button onclick="append(')')">)</button>
+      <button onclick="memoryAdd()">M+</button>
+      <button onclick="memorySub()">M-</button>
+      <button onclick="memoryRecall()">MR</button>
+      <button onclick="memoryClear()">MC</button>
+    </div>
+
+  </aside>
+
+  <!-- RIGHT: TOOLS -->
+  <main class="tools-panel">
+
+    <section class="tool-card">
+      <h2>Graph Plotter</h2>
+      <input type="text" id="funcInput" placeholder="Example: x*x or Math.sin(x)">
+      <button onclick="plotGraph()">Plot</button>
+      <canvas id="graphCanvas"></canvas>
+    </section>
+
+    <section class="tool-card">
+      <h2>Linear Equation Solver</h2>
+      <input type="text" id="eqInput" placeholder="Example: 2x+4=10">
+      <button onclick="solveEquation()">Solve</button>
+      <div id="solution"></div>
+    </section>
+
+    <section class="tool-card">
+      <h2>Matrix Calculator (2×2)</h2>
+      <input id="a11" placeholder="A11"><input id="a12" placeholder="A12">
+      <input id="a21" placeholder="A21"><input id="a22" placeholder="A22">
+      <input id="b11" placeholder="B11"><input id="b12" placeholder="B12">
+      <input id="b21" placeholder="B21"><input id="b22" placeholder="B22">
+      <button onclick="addMatrix()">A + B</button>
+      <button onclick="mulMatrix()">A × B</button>
+      <div id="matrixResult"></div>
+    </section>
+
+    <section class="tool-card">
+      <h2>Quadratic Solver</h2>
+      <input id="qa" placeholder="a">
+      <input id="qb" placeholder="b">
+      <input id="qc" placeholder="c">
+      <button onclick="solveQuadratic()">Solve</button>
+      <div id="quadResult"></div>
+    </section>
+
+    <section class="tool-card interest-card">
+      <h2>Interest Calculator</h2>
+      <input id="principal" placeholder="Principal (P)">
+      <input id="rate" placeholder="Annual Rate % (R)">
+      <input id="time" placeholder="Time in years (T)">
+      <div class="interest-row">
+        <select id="interestType">
+          <option value="simple">Simple Interest</option>
+          <option value="compound">Compound Interest</option>
+        </select>
+        <select id="compoundFreq">
+          <option value="1">Yearly</option>
+          <option value="4">Quarterly</option>
+          <option value="12">Monthly</option>
+        </select>
+        <button onclick="calculateInterest()">Calculate</button>
+      </div>
+      <div id="interestResult"></div>
+    </section>
+
+  </main>
+</div>
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('calcTab')">Calculator</button>
+  <button class="tab-btn" onclick="showTab('mathTab')">Math Tools</button>
+  <button class="tab-btn" onclick="showTab('financeTab')">Finance</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+<div id="calcTab" class="tab-content active">
+  <aside class="calculator-panel">
+    <!-- calculator code -->
+  </aside>
+</div>
+<div id="mathTab" class="tab-content">
+  <main class="tools-panel">
+    <!-- Graph, Linear, Matrix, Quadratic -->
+  </main>
+</div>
+<div id="financeTab" class="tab-content">
+  <section class="tool-card interest-card">
+    <!-- Interest Calculator -->
+  </section>
+</div>

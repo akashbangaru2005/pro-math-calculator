@@ -1,0 +1,33 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1e2f"></stop>
+      <stop offset="100%" stop-color="#2a2a40"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="110" fill="url(#bg)"></rect>
+
+  <!-- Calculator body -->
+  <rect x="120" y="90" width="272" height="332" rx="40" fill="#2e2e44"></rect>
+
+  <!-- Display -->
+  <rect x="150" y="120" width="212" height="70" rx="15" fill="#1a1d2b"></rect>
+
+  <!-- Graph line -->
+  <polyline points="165,165 205,145 245,155 285,125 325,135" fill="none" stroke="#00c896" stroke-width="6" stroke-linecap="round"></polyline>
+
+  <!-- Buttons grid -->
+  <circle cx="185" cy="240" r="16" fill="#ff9f43"></circle>
+  <circle cx="245" cy="240" r="16" fill="#ff9f43"></circle>
+  <circle cx="305" cy="240" r="16" fill="#ff9f43"></circle>
+
+  <circle cx="185" cy="290" r="16" fill="#ffffff" opacity="0.9"></circle>
+  <circle cx="245" cy="290" r="16" fill="#ffffff" opacity="0.9"></circle>
+  <circle cx="305" cy="290" r="16" fill="#ffffff" opacity="0.9"></circle>
+
+  <circle cx="185" cy="340" r="16" fill="#ffffff" opacity="0.9"></circle>
+  <circle cx="245" cy="340" r="16" fill="#ffffff" opacity="0.9"></circle>
+  <circle cx="305" cy="340" r="16" fill="#00c896"></circle>
+</svg>
